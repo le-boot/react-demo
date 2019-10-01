@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ToDoForm from './ToDoForm'
+import ToDoList from './ToDoList'
 
 class App extends Component {
+
+  state = { 
+      toDoList: []
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    this.setState({ toDoList: [...this.state.toDoList, event.target.task.value] })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <ToDoList value={this.state.toDoList}/>
+        <div>Congrats! You have nothing to do!</div>
+        <ToDoForm name="todo" onSubmit={this.onSubmit}/>
+      </React.Fragment>
     );
   }
 }
