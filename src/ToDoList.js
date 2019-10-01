@@ -1,10 +1,12 @@
 import React from 'react'
+import ToDoItem from './ToDoItem'
 
 const ToDoList = (props) => (
+
 <div>
     <ul>
         {props.value.map(item => (
-            <li>{item}</li>
+            <ToDoItem value={item}/>
         ))}
     </ul>
 </div>
